@@ -12,6 +12,11 @@
 		270AA2CD1F51673E00487085 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 270AA2CB1F51673E00487085 /* Main.storyboard */; };
 		270AA2CF1F51673E00487085 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 270AA2CE1F51673E00487085 /* Assets.xcassets */; };
 		270AA2D21F51673E00487085 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 270AA2D01F51673E00487085 /* LaunchScreen.storyboard */; };
+		270AA2DA1F516D1600487085 /* PixelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 270AA2D91F516D1600487085 /* PixelView.swift */; };
+		270AA2E01F5187C000487085 /* gomoku.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 270AA2DE1F5187C000487085 /* gomoku.cpp */; };
+		270AA2EA1F5187D000487085 /* logarithm.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 270AA2E61F5187D000487085 /* logarithm.cpp */; };
+		270AA2EB1F5187D000487085 /* mct.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 270AA2E81F5187D000487085 /* mct.cpp */; };
+		270AA2F31F5188EA00487085 /* EngineWrapper.mm in Sources */ = {isa = PBXBuildFile; fileRef = 270AA2F11F5188EA00487085 /* EngineWrapper.mm */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +27,16 @@
 		270AA2CE1F51673E00487085 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		270AA2D11F51673E00487085 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		270AA2D31F51673E00487085 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		270AA2D91F516D1600487085 /* PixelView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PixelView.swift; sourceTree = "<group>"; };
+		270AA2DE1F5187C000487085 /* gomoku.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = gomoku.cpp; sourceTree = "<group>"; };
+		270AA2DF1F5187C000487085 /* gomoku.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = gomoku.h; sourceTree = "<group>"; };
+		270AA2E31F5187CA00487085 /* clock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = clock.h; sourceTree = "<group>"; };
+		270AA2E61F5187D000487085 /* logarithm.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = logarithm.cpp; sourceTree = "<group>"; };
+		270AA2E71F5187D000487085 /* logarithm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = logarithm.h; sourceTree = "<group>"; };
+		270AA2E81F5187D000487085 /* mct.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = mct.cpp; sourceTree = "<group>"; };
+		270AA2E91F5187D000487085 /* mct.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mct.h; sourceTree = "<group>"; };
+		270AA2F11F5188EA00487085 /* EngineWrapper.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = EngineWrapper.mm; sourceTree = "<group>"; };
+		270AA2F21F5188EA00487085 /* EngineWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EngineWrapper.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,14 +69,65 @@
 		270AA2C61F51673E00487085 /* Gomoku */ = {
 			isa = PBXGroup;
 			children = (
-				270AA2C71F51673E00487085 /* AppDelegate.swift */,
+				270AA2F11F5188EA00487085 /* EngineWrapper.mm */,
+				270AA2F21F5188EA00487085 /* EngineWrapper.h */,
+				270AA2DB1F51877000487085 /* Engine */,
+				270AA2DC1F51878200487085 /* Supporting Files */,
 				270AA2C91F51673E00487085 /* ViewController.swift */,
 				270AA2CB1F51673E00487085 /* Main.storyboard */,
-				270AA2CE1F51673E00487085 /* Assets.xcassets */,
 				270AA2D01F51673E00487085 /* LaunchScreen.storyboard */,
-				270AA2D31F51673E00487085 /* Info.plist */,
+				270AA2D91F516D1600487085 /* PixelView.swift */,
 			);
 			path = Gomoku;
+			sourceTree = "<group>";
+		};
+		270AA2DB1F51877000487085 /* Engine */ = {
+			isa = PBXGroup;
+			children = (
+				270AA2E51F5187D000487085 /* AI */,
+				270AA2E11F5187CA00487085 /* Clock */,
+				270AA2DD1F5187C000487085 /* Game */,
+			);
+			name = Engine;
+			path = ..;
+			sourceTree = "<group>";
+		};
+		270AA2DC1F51878200487085 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				270AA2C71F51673E00487085 /* AppDelegate.swift */,
+				270AA2CE1F51673E00487085 /* Assets.xcassets */,
+				270AA2D31F51673E00487085 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		270AA2DD1F5187C000487085 /* Game */ = {
+			isa = PBXGroup;
+			children = (
+				270AA2DE1F5187C000487085 /* gomoku.cpp */,
+				270AA2DF1F5187C000487085 /* gomoku.h */,
+			);
+			path = Game;
+			sourceTree = "<group>";
+		};
+		270AA2E11F5187CA00487085 /* Clock */ = {
+			isa = PBXGroup;
+			children = (
+				270AA2E31F5187CA00487085 /* clock.h */,
+			);
+			path = Clock;
+			sourceTree = "<group>";
+		};
+		270AA2E51F5187D000487085 /* AI */ = {
+			isa = PBXGroup;
+			children = (
+				270AA2E61F5187D000487085 /* logarithm.cpp */,
+				270AA2E71F5187D000487085 /* logarithm.h */,
+				270AA2E81F5187D000487085 /* mct.cpp */,
+				270AA2E91F5187D000487085 /* mct.h */,
+			);
+			path = AI;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -138,7 +204,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				270AA2CA1F51673E00487085 /* ViewController.swift in Sources */,
+				270AA2F31F5188EA00487085 /* EngineWrapper.mm in Sources */,
+				270AA2E01F5187C000487085 /* gomoku.cpp in Sources */,
+				270AA2DA1F516D1600487085 /* PixelView.swift in Sources */,
+				270AA2EB1F5187D000487085 /* mct.cpp in Sources */,
 				270AA2C81F51673E00487085 /* AppDelegate.swift in Sources */,
+				270AA2EA1F5187D000487085 /* logarithm.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -263,11 +334,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_OPTIMIZATION = time;
 				DEVELOPMENT_TEAM = WV8LDH4SLS;
 				INFOPLIST_FILE = Gomoku/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = water.inc.Gomoku;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = Gomoku/EngineWrapper.h;
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -276,11 +349,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_OPTIMIZATION = time;
 				DEVELOPMENT_TEAM = WV8LDH4SLS;
+				GCC_OPTIMIZATION_LEVEL = fast;
 				INFOPLIST_FILE = Gomoku/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = water.inc.Gomoku;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = Gomoku/EngineWrapper.h;
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
