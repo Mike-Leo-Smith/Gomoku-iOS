@@ -56,7 +56,7 @@ namespace watery {
     void Gomoku::update_state(int last_row, int last_col)
     {
         // Vertical.
-        Row r = _board[_player][last_col];
+        Row r = _board[_player][last_row];
         
         if (r & (r >> 1) & (r >> 2) & (r >> 3) & (r >> 4))
         {
@@ -65,7 +65,7 @@ namespace watery {
         }
         
         int min_row = (last_row >= 4 ? last_row - 4 : 0);
-        int max_row = (last_row + 4 < rows() ? last_row + 4 : cols());
+        int max_row = (last_row + 4 < rows() ? last_row + 4 : rows() - 1);
         
         int d = max_row - min_row - 3;
         

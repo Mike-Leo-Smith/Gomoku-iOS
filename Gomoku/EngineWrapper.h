@@ -20,7 +20,7 @@ struct BoardPoint{
 + (int)getPieceAtRow: (int)row col: (int)col;
 + (void)placePieceAtRow: (int)row col: (int)col;
 + (int)gameState;
-+ (struct BoardPoint)searchWithAI;
++ (struct BoardPoint)searchInSeconds: (int)seconds;
 + (int)cols;
 + (int)rows;
 

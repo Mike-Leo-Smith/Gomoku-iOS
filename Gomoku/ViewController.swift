@@ -12,19 +12,19 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var pixelView: PixelView! {
         didSet {
-            pixelView.backgroundColor = UIColor(displayP3Red: 0.6, green: 0.7, blue: 0.8, alpha: 1.0)
-            
             let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(tagGestureResponse))
             tapRecognizer.numberOfTouchesRequired = 1
             pixelView.addGestureRecognizer(tapRecognizer)
-            renderGameBoard()
         }
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         EngineWrapper.resetGame(Int32(Player.black.rawValue))
-        // Do any additional setup after loading the view, typically from a nib.
+    }
+    
+    override func viewDidLayoutSubviews() {
+        renderGameBoard()
     }
     
     override func didReceiveMemoryWarning() {
@@ -36,11 +36,10 @@ class ViewController: UIViewController {
         if !aiSearching && tapRecognizer.state == .ended && gameState == .inGame {
             let col = Int32(tapRecognizer.location(in: pixelView).x / pixelView.scale)
             let row = Int32(tapRecognizer.location(in: pixelView).y / pixelView.scale)
-            print("Placed piece at(Row: \(row), Col: \(col))")
             EngineWrapper.placePiece(atRow: row, col: col)
             renderGameBoard()
             if (gameState == .inGame) {
-                findAISolution()
+                askComputerToGo()
             }
         }
     }
@@ -50,21 +49,38 @@ class ViewController: UIViewController {
         renderGameBoard()
     }
     
-    @IBOutlet weak var waitingIndicator: UIActivityIndicatorView!
+    @IBOutlet weak var searchingProgress: UIProgressView!
+    
     var aiSearching = false
     
-    func findAISolution() {
-        if gameState == .inGame {
-            waitingIndicator.startAnimating()
-            aiSearching = true
-            DispatchQueue.global(qos: .userInitiated).async { [weak self] in
-                let solution = EngineWrapper.searchWithAI()
-                EngineWrapper.placePiece(atRow: solution.row, col: solution.col)
+    func askComputerToGo() {
+        aiSearching = true
+        let searchingTimeLimitInSeconds = 15
+        searchingProgress.progress = 0
+        searchingProgress.setNeedsDisplay()
+        searchingProgress.isHidden = false
+        
+        DispatchQueue.global(qos: .userInitiated).async { [weak self] in
+            let solution = EngineWrapper.search(inSeconds: Int32(searchingTimeLimitInSeconds))
+            EngineWrapper.placePiece(atRow: solution.row, col: solution.col)
+            DispatchQueue.main.async {
+                self?.renderGameBoard()
+                self?.aiSearching = false
+                self?.searchingProgress.isHidden = true
+            }
+        }
+        
+        func quadraticSpeedProgress(elapsed time: Double, of total: Double) -> Double {
+            return (3.0 * total * time * time - 2.0 * time * time * time) / (total * total * total)
+        }
+        
+        DispatchQueue.global(qos: .background).async { [weak self] in
+            for elapsedTime in 0...searchingTimeLimitInSeconds {
                 DispatchQueue.main.async {
-                    self?.renderGameBoard()
-                    self?.aiSearching = false
-                    self?.waitingIndicator.stopAnimating()
+                    self?.searchingProgress.setProgress(Float(quadraticSpeedProgress(elapsed: Double(elapsedTime), of: Double(searchingTimeLimitInSeconds))), animated: true)
+                    self?.searchingProgress.setNeedsDisplay()
                 }
+                sleep(1)
             }
         }
     }
@@ -131,6 +147,7 @@ class ViewController: UIViewController {
                 }
             }
         }
+        pixelView.backgroundColor = UIColor(displayP3Red: 0.6, green: 0.7, blue: 0.8, alpha: 1.0)
         pixelView.scale = pixelView.bounds.width / CGFloat(EngineWrapper.cols())
         pixelView.render()
         if gameState == .inGame {

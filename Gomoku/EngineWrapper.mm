@@ -35,8 +35,8 @@ static watery::Gomoku game;
     return game.player();
 }
 
-+ (struct BoardPoint)searchWithAI {
-    watery::Point result = watery::MCT::uct_search(game, 15000);
++ (struct BoardPoint)searchInSeconds: (int)seconds {
+    watery::Point result = watery::MCT::uct_search(game, seconds * 1000);
     game.place_piece(result.row, result.col);
     return BoardPoint{result.row, result.col};
 }
