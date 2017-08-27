@@ -336,6 +336,9 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_OPTIMIZATION = time;
 				DEVELOPMENT_TEAM = WV8LDH4SLS;
+				GCC_OPTIMIZATION_LEVEL = fast;
+				GCC_VERSION = "";
+				ICC_USE_OPTIMIZED_HEADERS = YES;
 				INFOPLIST_FILE = Gomoku/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = water.inc.Gomoku;
@@ -353,6 +356,8 @@
 				ASSETCATALOG_COMPILER_OPTIMIZATION = time;
 				DEVELOPMENT_TEAM = WV8LDH4SLS;
 				GCC_OPTIMIZATION_LEVEL = fast;
+				GCC_VERSION = "";
+				ICC_USE_OPTIMIZED_HEADERS = YES;
 				INFOPLIST_FILE = Gomoku/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = water.inc.Gomoku;

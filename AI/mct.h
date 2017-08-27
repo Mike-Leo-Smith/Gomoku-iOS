@@ -17,7 +17,7 @@ namespace watery {
         int total;
         
         MCTNode *parent;
-        MCTNode *children[Gomoku::rows()][Gomoku::cols()];
+        MCTNode *children[ROWS][COLS];
     };
     
     struct Point
